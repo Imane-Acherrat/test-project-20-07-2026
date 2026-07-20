@@ -5,11 +5,6 @@ logs from CSV files, filters out normal readings, stores only abnormal
 alerts, and lets engineers/administrators review and manage them from a
 Blade dashboard.
 
-Built with **core Laravel only** — no third-party Composer packages beyond
-the default framework skeleton (no Breeze/Jetstream, no CSV/Excel
-libraries). CSV parsing uses PHP's native `fgetcsv()`, streamed and
-inserted in chunks of 500 rows so large files never load fully into memory.
-
 ## Requirements
 
 - PHP 8.2+
@@ -57,8 +52,8 @@ mysql -u root -p < database/sql/schema.sql
 
 | Role          | Email                 | Password |
 |---------------|------------------------|----------|
-| Administrator | admin@factory.test     | password |
-| Engineer      | engineer@factory.test  | password |
+| Administrator | admin@factory.com     | password |
+| Engineer      | engineer@factory.com  | password |
 
 ## Sample CSV
 
@@ -86,17 +81,3 @@ testing the import feature (`/sensor-alerts/import`).
 | GET    | `/sensor-alerts`                 | List all stored alerts                | Authenticated  |
 | PATCH  | `/sensor-alerts/{id}/status`     | Update alert status                   | Authenticated  |
 | DELETE | `/sensor-alerts/{id}`            | Delete an alert                       | Administrator  |
-
-## Project Structure Notes
-
-- `app/Models/User.php` — adds `role` (`engineer` / `administrator`) with
-  `isAdministrator()` / `isEngineer()` helpers.
-- `app/Models/SensorAlert.php` — `severityFor()` implements the
-  vibration → severity mapping.
-- `app/Http/Controllers/SensorAlertController.php` — streamed CSV import
-  (`fgetcsv`), chunked bulk inserts, listing, status updates, deletion.
-- `app/Http/Middleware/EnsureUserIsAdministrator.php` — guards the delete
-  route (`admin` middleware alias, registered in `bootstrap/app.php`).
-- `app/Http/Requests/` — `ImportSensorLogRequest` (CSV-only, ≤10MB) and
-  `UpdateSensorAlertStatusRequest` (status must be `Resolved` or
-  `Not Important`).
