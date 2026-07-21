@@ -2,7 +2,7 @@
 
 ## Competition Time
 
-4 hours
+3 hours
 
 ---
 
