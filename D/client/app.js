@@ -1,6 +1,7 @@
 import { CanvasRenderer } from './canvas.js';
 import { socket } from './socket.js';
 
+// Global state variables
 let renderer = null;
 
 let activeTool = 'rectangle';
@@ -17,8 +18,10 @@ let currentUsername = 'Anonymous';
 
 let animFrameId = null;
 
+// Utility function to generate unique IDs for objects
 const generateId = () => `obj-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
 
+// Function to get canvas coordinates from mouse or touch events
 function getCanvasCoords(e, canvas) {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -33,6 +36,7 @@ function getCanvasCoords(e, canvas) {
     };
 }
 
+// Function to resize the canvas to fit its container
 function resizeCanvasToContainer(canvas) {
     const container = canvas.parentElement;
     if (!container) return;
@@ -42,6 +46,7 @@ function resizeCanvasToContainer(canvas) {
     if (renderer) renderer.render();
 }
 
+// Initialize the application once the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     const canvasEl = document.getElementById('canvas');
     if (!canvasEl) return;
@@ -51,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeCanvasToContainer(canvasEl);
     window.addEventListener('resize', () => resizeCanvasToContainer(canvasEl));
 
+    // Extract room ID and username from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const roomId = urlParams.get('room') || 'room-1';
 
@@ -64,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCanvasMouseEvents(canvasEl);
 });
 
+// Initialize socket event listeners for real-time collaboration
 function initSocketEvents(roomId, username) {
     socket.off();
 
@@ -108,6 +115,7 @@ function initSocketEvents(roomId, username) {
     });
 }
 
+// Initialize mouse and touch event listeners for the canvas
 function initCanvasMouseEvents(canvas) {
     let lastCursorSend = 0;
 
@@ -236,6 +244,7 @@ function initCanvasMouseEvents(canvas) {
     canvas.addEventListener('mouseleave', handleMouseUp);
 }
 
+// Initialize UI event listeners for tool selection and color changes
 function initUIEventListeners() {
     document.querySelectorAll('.tool-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -271,6 +280,7 @@ function initUIEventListeners() {
     });
 }
 
+// Function to update the user list in the UI
 function updateUserList(users) {
     const userListEl = document.getElementById('user-list');
     if (!userListEl || !Array.isArray(users)) return;

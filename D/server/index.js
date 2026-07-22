@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
+// Initialize Express app and HTTP server
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -13,6 +14,7 @@ const io = new Server(server, {
 
 const rooms = new Map();
 
+// Socket.IO connection handling
 io.on('connection', (socket) => {
     let currentRoom = null;
     let currentUser = null;
@@ -96,6 +98,7 @@ io.on('connection', (socket) => {
     });
 });
 
+// Start the server
 const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

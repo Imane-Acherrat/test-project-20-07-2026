@@ -1,3 +1,7 @@
+/**
+ * CanvasRenderer class handles rendering of objects and cursors on an HTML canvas element.
+ * It supports adding, updating, deleting, and clearing objects, as well as managing user cursors.
+ */
 export class CanvasRenderer {
     constructor(canvasElement) {
         this.canvas = canvasElement;
