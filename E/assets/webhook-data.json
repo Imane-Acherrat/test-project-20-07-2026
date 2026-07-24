@@ -1,0 +1,35 @@
+{
+  "event": "survey.response.created",
+  "survey": {
+    "id": 12,
+    "public_id": "9f8a2d7c",
+    "title": "Customer Satisfaction Survey"
+  },
+  "submission": {
+    "id": 245,
+    "submitted_at": "2026-07-24T10:30:00Z",
+    "submitted_by": {
+      "id": 18,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "is_authenticated": true
+    },
+    "answers": [
+      {
+        "question_id": 45,
+        "question": "How satisfied are you?",
+        "type": "rating",
+        "value": 5
+      },
+      {
+        "question_id": 46,
+        "question": "Which services did you use?",
+        "type": "multiple_choice",
+        "value": [
+          "Delivery",
+          "Customer support"
+        ]
+      }
+    ]
+  }
+}
