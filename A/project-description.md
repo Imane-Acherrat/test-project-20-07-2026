@@ -298,11 +298,11 @@ The table below outlines how marks are broken down and how they align with the W
 
 | WSOS SECTION | Description                            | Points |
 | ------------ | -------------------------------------- | ------ |
-| 1            | Work organization and self-management  | 1      |
+| 1            | Work organization and self-management  | 2      |
 | 2            | Communication and interpersonal skills | 0      |
 | 3            | Design Implementation                  | 2      |
 | 4            | Front-End Development                  | 5      |
-| 5            | Back-End Development                   | 17     |
+| 5            | Back-End Development                   | 16     |
 | **Total**    |                                        | 25     |
 
 The application should be fully functional within the allocated competition time.
